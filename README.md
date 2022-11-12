@@ -1,11 +1,11 @@
 ### Clean-folder script package.
-![](https://img.shields.io/aur/last-modified/clean-folder?color=orange)
+![](https://img.shields.io/github/watchers/OleksandrGnatiuk/clean_folder_script?style=social)
 ____
 This python script can clean any folders, it sorts all files in folder according to file's suffix.
 
 > How to install this package?
-> > Please can run from the command line:  `pip install /path/to/clean-folder_script/folder`    
->    _(where is setup.py)_
+>>Please can run from the command line:  `pip install /path/to/clean-folder_script/folder`    
+   _(where is setup.py)_
 
 > How to use clean-folder script?
 >> You need run from the command line:  `clean-folder /path/to folder/you want to clean/`
