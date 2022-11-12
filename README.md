@@ -1,16 +1,18 @@
 ### Clean-folder script package.
-This python script can clean any folder, it sorts all files in folder according to file's suffix.
+![](https://img.shields.io/aur/last-modified/clean-folder?color=orange)
+____
+This python script can clean any folders, it sorts all files in folder according to file's suffix.
 
 > How to install this package?
-> >_Please can run from the command line: `pip install /path/to/clean-folder_script/folder`_    
->    (where is file setup.py)
+> > Please can run from the command line:  `pip install /path/to/clean-folder_script/folder`    
+>    _(where is setup.py)_
 
 > How to use clean-folder script?
->> You need can run from the command line: _`clean-folder /path/to folder/you want to clean/`_
+>> You need run from the command line:  `clean-folder /path/to folder/you want to clean/`
 
-+ [x] if this folder is not exist, you'll see message in console.
-+ [X] The script sorts files according to file's `suffix`.
-+ [x] Default folders are `documents`, `images`, `video`, `audio`, `archives`. 
++ [x] if this folder is not exists, you'll see a message in console.
++ [x] The script sorts files according to file's `suffix`.
++ [x] Default folders are `documents`, `images`, `video`, `audio` and `archives`. 
 + [x] if you want your own rule of sorting files you need to change `suffix_dict`:
   ``` python
   suffix_dict = {
@@ -23,13 +25,13 @@ This python script can clean any folder, it sorts all files in folder according 
   ```
 + [x] All files with relevant suffix will be move to these folders;
 + [x] Another files will be move to folder `other`;
-+ [x] if these folders was not exist they will be create;
-+ [x] The script recursively checks all subfolders and removes all files to the main folder;
-+ [x] Empty folders will be delete;
-+ [x] Files with kirilic name will be __rename to latin name__;
-+ [x] if subfolders involve the files with the same name, this files will be rename - __date-time will be added to file's name__;
-+ [x] All archives will be unpack with the same name in folder `archive`;
++ [x] if these folders were not exist they will be created;
++ [x] The script recursively checks all subfolders and it moves all files to the main folder;
++ [x] Empty folders will be deleted;
++ [x] Files with kirilic name will be __renamed to latin name__;
++ [x] if subfolders involve the files with the same name, these files will be renamed - __date-time will be added to file's name__;
++ [x] All archives will be unpacked with the same name in folder `archive`;
 + [x] if achive is broken, script will continue its work without unpacking this archive. In console you'll see message about this broken archive;
-+ [x] When script finishes clean folder you'll see the report;
++ [x] When script finishes clean folder you'll see the report.
   
 If any questions, please contact to oleksandr.gnatiuk@gmail.com
