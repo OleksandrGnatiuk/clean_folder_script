@@ -4,7 +4,7 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
-# створюємо словник, згідно якого визначаємо правила сортування файлів:
+# Dictionarie for set the rules of sorting files:
 suffix_dict = {
     "documents": [".doc", ".docx", ".xls", ".xlsx", ".txt", ".pdf"],
     "audio": [".mp3", ".ogg", ".wav", ".amr"],
@@ -13,7 +13,7 @@ suffix_dict = {
     "archives": [".zip", ".gz", ".tar"],
 }
 
-# Створюємо функціонал для заміни назв файлів з кирилиці на латиницю:
+# Create rule of chanding kirilic letters to latin letters
 CYRILLIC_SYMBOLS = "абвгдеёжзийклмнопрстуфхцчшщъыьэюяєіїґ?<>,!@#[]#$%^&*()-=; "
 TRANSLATION = ("a", "b", "v", "g", "d", "e", "e", "j", "z", "i", "j", "k", "l", "m", "n", "o", "p", "r", "s", "t", "u",
                "f", "h", "ts", "ch", "sh", "sch", "", "y", "", "e", "yu", "ya", "je", "i", "ji", "g", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_","_", "_")
@@ -24,45 +24,45 @@ for c, t in zip(CYRILLIC_SYMBOLS, TRANSLATION):
 
 
 def normalize(name):
-    """замінюємо кирилицю на латиницю """
+    """Change kirilic letters to latin letters"""
     global TRANS
     return name.translate(TRANS)
 
 
-def is_file_exists(file, dr):
-    """Функція перевіряє, чи вже існує файл з такою назвою.
-    Якщо файл з такою назвою існує, то до назви файла в кінець добавляє дату та час переміщення файлу'"""
+def is_file_exists(file, to_dir):
+    """ if the file is exists with same name, this file will be renamed - 
+    date-time will be added to file's name"""
 
-    if file in dr.iterdir():
+    if file in to_dir.iterdir():
         add_name = datetime.now().strftime("%d_%m_%Y_%H_%M_%S_%f")
         new_name = file.resolve().stem + f"_{add_name}_" + file.suffix
-        new_name_path = Path(dr, new_name)
+        new_name_path = Path(to_dir, new_name)
         return new_name_path
     return file
 
 
-def is_fold_exists(file, dr):
+def is_fold_exists(file, to_dir):
     """ Перевіряємо чи існує необхідна папка, якщо немає - створюємо;
     file - посилання на файл, який переміщаємо;    dr - посилання на папку, куди необхідно перемістити файл."""
-    if dr.exists():
-        folder_sort(file, dr) # передає на функцію, що змінює назву та переміщує файл
+    if to_dir.exists():
+        folder_sort(file, to_dir) 
     else:
-        Path(dr).mkdir()   # створюємо папку з необхідною назвою
-        folder_sort(file, dr) # передає на функцію, що змінює назву та переміщує файл
+        Path(to_dir).mkdir()
+        folder_sort(file, to_dir)
     
 
-def folder_sort(file, dr):
+def folder_sort(file, to_dir):
     """ змінює назву файла та переміщає в необхідну папку.
     file - посилання на файл,  який переміщаємо;    dr - посилання, на папку, куди необхідно перемістити файл."""
     latin_name = normalize(file.name)    
-    new_file = Path(dr, latin_name)   # створюємо шлях до файла з новою назвою
-    file_path = is_file_exists(new_file, dr)     # перевіряємо чи вже існує файл з такою назвою
-    file.replace(file_path)              # переміщуємо файл
+    new_file = Path(to_dir, latin_name) 
+    file_path = is_file_exists(new_file, to_dir) 
+    file.replace(file_path) 
 
 
 def show_result(p):
-    total_dict = collections.defaultdict(list)  # збираємо розширення файлів
-    files_dict = collections.defaultdict(list)  # збираємо назви файлів
+    total_dict = collections.defaultdict(list)  # collect file's suffix
+    files_dict = collections.defaultdict(list)  # collect file's name
 
     for item in p.iterdir():
         if item.is_dir():
@@ -72,14 +72,14 @@ def show_result(p):
                     files_dict[item.name].append(file.name) 
     for k, v in files_dict.items():
         print()
-        print(f" Вміст папки '{k}': ")
+        print(f" Folder '{k}' contains files: ")
         print(f" ---- {v}")
 
     print()
-    print("======================= Сортування файлів успішно завершено! =======================")
+    print("======================= File sorting completed successfully! =======================")
     print()
     print("-------------------------------------------------------------------------------------")
-    print("| {:^15} | {:^12} | {:^48} |".format("Назва папки ", "к-ть файлів", "розширення файлів"))
+    print("| {:^15} | {:^12} | {:^48} |".format("Folder's name", "files, pcs", "file's suffix"))
     print("-------------------------------------------------------------------------------------")
 
     for key, value in total_dict.items():
@@ -92,33 +92,31 @@ def show_result(p):
 
 
 def sort_file(folder, p):
-    """ Перевіряє кожну папку та файли по їх розширенню, організовує сортування файлів, та заміну їх назв"""
+    """ Check suffix of files, subfolders and sort it"""
     for i in p.iterdir():
-        if i.name in ("documents", "audio", "video", "images", "archives", "other"): # задаємо перелік папок, для яких сортування вмісту не застосовуємо.
+        if i.name in ("documents", "audio", "video", "images", "archives", "other"): # script ignors these folders.
             continue
         if i.is_file():
-            # сортування для файлів:
-            flag = False  # Якщо флаг не зміниться на True - значить розширення файлу не передбачено правилами. Файл буде відправлено у папку "other"
+            flag = False  # if flag stay False - file's suffix is not in suffix_dict and we need move this file to "other"
             for f, suf in suffix_dict.items():
                 if i.suffix.lower() in suf:
-                    dr = Path(folder, f)
-                    is_fold_exists(i, dr)
-                    flag = True  # Якщо розширення файла є в словнику - змінюємо на True
+                    to_dir = Path(folder, f)
+                    is_fold_exists(i, to_dir)
+                    flag = True  # if file's suffix was founded in suffix_dict, flag == True
                 else:
                     continue
             if not flag: 
-                # Якшо розширення файла немає в словнику (флаг залишається False) ми переміщаємо у "other"
-                dr = Path(folder, "other")
-                is_fold_exists(i, dr)
+                # if flag == False: suffix of file was not founded in suffix_dict. We need move this file to "other"
+                to_dir = Path(folder, "other")
+                is_fold_exists(i, to_dir)
         elif i.is_dir():
-            # операції для папок:
             if len(list(i.iterdir())) != 0:
-                sort_file(folder, i) # якщо папка не пуста - рекурсивно запускаємо в ній функцію
+                sort_file(folder, i) # if folder is not empty, recursively sort_file()
             else:
-                shutil.rmtree(i)  # якщо папка пуста - її удаляємо.
+                shutil.rmtree(i)  # delete empty folders
 
     for j in p.iterdir():
-        # в цьому циклі розпаковуємо архіви
+        # unpacking archives
         if j.name == "archives" and len(list(j.iterdir())) != 0:
             for arch in j.iterdir():
                 if arch.is_file() and arch.suffix in (".zip", ".gz", ".tar"):
@@ -127,14 +125,14 @@ def sort_file(folder, p):
                         path_to_unpack = Path(p, "archives", arch_dir_name) # створюємо шлях до папки розпаковки архіва
                         shutil.unpack_archive(arch, path_to_unpack)
                     except:
-                        print(f"Увага: Помилка розпаковки архіву '{arch.name}'!\n")
+                        print(f"Attention: Error unpacking the archive '{arch.name}'!\n")
                     finally:
                         continue
                 else:
                     continue
-        elif i.is_dir() and not len(list(i.iterdir())):
-            # видалення пустих папок, що залишилися після рекурсивного обходу:
-            shutil.rmtree(i)
+        elif j.is_dir() and not len(list(j.iterdir())):
+            # delete empty folders:
+            shutil.rmtree(j)
     
 
 
@@ -146,7 +144,7 @@ def main():
     try:
         sort_file(folder, p)
     except FileNotFoundError:
-        print("\nЗаданої папки не знайдено. Перевірте шлях до папки та запустіть команду сортування файлів ще раз.\n")
+        print("\nThe folder was not found. Check the folder's path and run the command again!.\n")
         return
     return show_result(p)
 

@@ -1,9 +1,9 @@
 from setuptools import setup
 
 setup(name='clean_folder',
-      version='1.0.8',
+      version='1.0.9',
       description='script for cleaning folders',
-      url='https://github.com/OleksandrGnatiuk/python_core',
+      url='https://github.com/OleksandrGnatiuk/clean_folder_script',
       author='Oleksandr Gnatiuk',
       author_email='oleksandr.gnatiuk@gmail.com',
       license='MIT',
