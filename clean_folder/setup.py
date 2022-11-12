@@ -6,7 +6,9 @@ setup(name='clean_folder',
       url='https://github.com/OleksandrGnatiuk/clean_folder_script',
       author='Oleksandr Gnatiuk',
       author_email='oleksandr.gnatiuk@gmail.com',
+      include_package_data=True,
       license='MIT',
       packages=['clean_folder'],
+      install_requires=['markdown'],
       entry_points={'console_scripts': ['clean-folder = clean_folder.clean:main']}
       )

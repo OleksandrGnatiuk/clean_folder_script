@@ -4,8 +4,8 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
-# Dictionarie for set the rules of sorting files:
-suffix_dict = {
+# Dictionary for set the rules of sorting files:
+extension_dict = {
     "documents": [".doc", ".docx", ".xls", ".xlsx", ".txt", ".pdf"],
     "audio": [".mp3", ".ogg", ".wav", ".amr"],
     "video": [".avi", ".mp4", ".mov", ".mkv"],
@@ -76,37 +76,36 @@ def show_result(p):
         print(f" ---- {v}")
 
     print()
-    print("======================= File sorting completed successfully! =======================")
-    print()
-    print("-------------------------------------------------------------------------------------")
-    print("| {:^15} | {:^12} | {:^48} |".format("Folder's name", "files, pcs", "file's suffix"))
-    print("-------------------------------------------------------------------------------------")
+    print("               *** File sorting completed successfully! ***   ")
+    print("---------------------------------------------------------------------------")
+    print("| {:^14} |{:^9}| {:^40} ".format("Folder", "files,pcs", "file's extensions"))
+    print("---------------------------------------------------------------------------")
 
     for key, value in total_dict.items():
         k, a, b = key, len(value), ", ".join(set(value))
-        print("| {:<15} | {:^12} | {:<48} |".format(k, a, b))
+        print("| {:<14} |{:^9}| {:<40} ".format(k, a, b))
 
-    print("-------------------------------------------------------------------------------------")
+    print("----------------------------------------------------------------------------")
     print()
 
 
 
 def sort_file(folder, p):
-    """ Check suffix of files, subfolders and sort it"""
+    """ Check extension of files, subfolders and sort it"""
     for i in p.iterdir():
         if i.name in ("documents", "audio", "video", "images", "archives", "other"): # script ignors these folders.
             continue
         if i.is_file():
-            flag = False  # if flag stay False - file's suffix is not in suffix_dict and we need move this file to "other"
-            for f, suf in suffix_dict.items():
+            flag = False  # if flag stay False - file's extension is not in extension_dict and we need move this file to "other"
+            for f, suf in extension_dict.items():
                 if i.suffix.lower() in suf:
                     to_dir = Path(folder, f)
                     is_fold_exists(i, to_dir)
-                    flag = True  # if file's suffix was founded in suffix_dict, flag == True
+                    flag = True  # if file's extension was founded in extension_dict, flag == True
                 else:
                     continue
             if not flag: 
-                # if flag == False: suffix of file was not founded in suffix_dict. We need move this file to "other"
+                # if flag == False: extension of file was not founded in extension_dict. We need move this file to "other"
                 to_dir = Path(folder, "other")
                 is_fold_exists(i, to_dir)
         elif i.is_dir():
@@ -137,7 +136,7 @@ def sort_file(folder, p):
 
 
 def main():
-    path = sys.argv[1]  # запускаємо через командну строку. Передаємо шлях до папки, в якій необхідно відсортувати файли
+    path = sys.argv[1]  # run from the command line: `clean-folder /path/to folder/you want to clean/`
     # path = r"/home/oleksandr/Стільниця/trash"
     folder = Path(path)
     p = Path(path)
