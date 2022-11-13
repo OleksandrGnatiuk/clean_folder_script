@@ -16,9 +16,9 @@ This script can clean any folders, it sorts all files in folder according to fil
 > > You need run from the command line: `clean-folder /path/to folder/you want to clean/`
 
 - [x] if this folder is not exists, you'll see a message in console.
-- [x] The script sorts files according to file's `extensions`.
+- [x] The script sorts files according to file's extensions.
 - [x] Default folders are `documents`, `images`, `video`, `audio` and `archives`.
-- [x] if you want your own rule of sorting files you need to change `extension_dict`:
+- [x] if you want your own rule of sorting files you need to change __extension_dict__:
   ```python
   extension_dict = {
     "documents": [".doc", ".docx", ".xls", ".xlsx", ".txt", ".pdf"],
