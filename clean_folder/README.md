@@ -2,8 +2,6 @@
 
 ![](https://img.shields.io/github/watchers/OleksandrGnatiuk/clean_folder_script?style=social)
 
----
-
 This script can clean any folders, it sorts all files in folder according to file's extensions.
 
 > How to install this package?
@@ -13,7 +11,7 @@ This script can clean any folders, it sorts all files in folder according to fil
 
 > How to use clean-folder script?
 >
-> > You have to run from the command line: `clean-folder /path/to folder/you want to clean/`
+> > You have to run from the command line: `clean-folder /path/to/folder/you/want/to/clean/`
 
 - [x] if this folder is not exists, you'll see a message in console.
 - [x] The script sorts files according to file's extensions.
@@ -33,10 +31,10 @@ This script can clean any folders, it sorts all files in folder according to fil
 - [x] if these folders were not exist its will be created;
 - [x] The script recursively checks all subfolders and it moves all files to the main folder;
 - [x] Empty folders will be deleted;
-- [x] Files with kirilic name will be **renamed to latin name**;
+- [x] Files with Cyrillic name will be **renamed to Latin name**;
 - [x] if subfolders involve the files with the same name, these files will be renamed - **date-time will be added to file's name**;
 - [x] All archives will be unpacked to subfolder with the name as archive's name in folder `archive`;
 - [x] if archive is broken, script will continue its work without unpacking this archive. In console you'll see message about this broken archive;
-- [x] When script finishes to clean folder you'll see the report.
+- [x] When script finishes to clean folder, you'll see the report.
 
 If any questions, please contact to oleksandr.gnatiuk@gmail.com

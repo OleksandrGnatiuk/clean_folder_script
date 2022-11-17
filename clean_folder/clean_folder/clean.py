@@ -13,7 +13,7 @@ extension_dict = {
     "archives": [".zip", ".gz", ".tar"],
 }
 
-# Create rule of chanding kirilic letters to latin letters
+# Create rule of chanding Cyrillic letters to Latin letters
 CYRILLIC_SYMBOLS = "абвгдеёжзийклмнопрстуфхцчшщъыьэюяєіїґ?<>,!@#[]#$%^&*()-=; "
 TRANSLATION = ("a", "b", "v", "g", "d", "e", "e", "j", "z", "i", "j", "k", "l", "m", "n", "o", "p", "r", "s", "t", "u",
                "f", "h", "ts", "ch", "sh", "sch", "", "y", "", "e", "yu", "ya", "je", "i", "ji", "g", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_","_", "_")
@@ -24,7 +24,7 @@ for c, t in zip(CYRILLIC_SYMBOLS, TRANSLATION):
 
 
 def normalize(name):
-    """Change kirilic letters to latin letters"""
+    """Change Cyrillic letters to Latin letters"""
     global TRANS
     return name.translate(TRANS)
 
