@@ -1,15 +1,16 @@
 ## Clean-folder script package.
 
-![](https://img.shields.io/github/watchers/OleksandrGnatiuk/clean_folder_script?style=social)
+This script can sort all files in folder. It sorts all files according to file's extensions. Files with Cyrillic name will be renamed to Latin name. All files will be replaced to folders: "document", "music", "video", "images", "archives", "other", etc.
+You can change the list of these folders and set your own rules of sorting files.
 
-This script can clean any folders, it sorts all files in folder according to file's extensions.
+## Installation
 
-### How to install this package?
-Please run from the command line: `pip install /path/to/clean-folder_script/folder`  
-(where is setup.py)_
+Download package, unpack it and use next command to install it from unpacked folder:
+> `pip install -e .`
 
-### How to use clean-folder script?
-You have to run from the command line: `clean-folder /path/to/folder/you/want/to/clean/`
+
+## How to use clean-folder script?
+> You have to run from the command line: `clean-folder <path to folder you want to clean>`
 
 - [x] if this folder is not exists, you'll see a message in console.
 - [x] The script sorts files according to file's extensions.
