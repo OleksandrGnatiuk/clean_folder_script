@@ -1,7 +1,7 @@
-## Clean-folder script package.
+## Clean-folder script package
 
-<p> This script can sort all files in folder. It sorts all files according to file's extensions. <br> 
-Files with Cyrillic name will be renamed to Latin name. <br> 
+<p> This script can sort all files in folder. It sorts all files according to file's extensions. <br>
+Files with Cyrillic name will be renamed to Latin name. <br>
 All files will be replaced to folders: "document", "music", "video", "images", "archives", "other", etc.
 You can change the list of these folders and set your own rules of sorting files.</p>
 
@@ -9,18 +9,23 @@ You can change the list of these folders and set your own rules of sorting files
 
 Download package, unpack it and use next command to install it from unpacked folder:
 
->
-> `pip install -e .`
->
+```bash
+pip install -e .
+```
 
 ## How to use clean-folder script?
+
 You have to run from the command line: <br>
-> `clean-folder <path to folder you want to clean>`
+
+```bash
+clean-folder <path to folder you want to clean>
+```
 
 - [x] if this folder is not exists, you'll see a message in console.
 - [x] The script sorts files according to file's extensions.
 - [x] Default folders are `documents`, `images`, `video`, `audio` and `archives`.
-- [x] if you want to set your own rules of sorting files you have to change __extension_dict__:
+- [x] if you want to set your own rules of sorting files you have to change **extension_dict**:
+
   ```python
   extension_dict = {
     "documents": [".doc", ".docx", ".xls", ".xlsx", ".txt", ".pdf"],
@@ -30,8 +35,9 @@ You have to run from the command line: <br>
     "archives": [".zip", ".gz", ".tar"],
     }
   ```
+
 - [x] All files with relevant extensions will be moved to these folders;
-- [x] Other files will be moved to folder `other`;
+- [x] Other files will be replaced to folder `other`;
 - [x] if these folders were not exist its will be created;
 - [x] The script recursively checks all subfolders and it moves all files to the main folder;
 - [x] Empty folders will be deleted;
