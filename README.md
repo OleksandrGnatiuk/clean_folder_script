@@ -39,7 +39,7 @@ clean-folder <path to folder you want to clean>
 - [x] All files with relevant extensions will be moved to these folders;
 - [x] Other files will be replaced to folder `other`;
 - [x] if these folders were not exist its will be created;
-- [x] The script recursively checks all subfolders and it moves all files to the main folder;
+- [x] The script recursively checks all subfolders and replaces all files to destination folders;
 - [x] Empty folders will be deleted;
 - [x] Files with Cyrillic name will be **renamed to Latin name**;
 - [x] if subfolders involve the files with the same name, these files will be renamed - **date-time will be added to file's name**;
