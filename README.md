@@ -1,3 +1,5 @@
+[![HitCount](http://hits.dwyl.com/OleksandrGnatiuk/clean_folder_script.svg)](http://hits.dwyl.com/OleksandrGnatiuk/clean_folder_script)
+
 ## Clean-folder script package
 
 <p> This script can sort all files in folder. It sorts all files according to file's extensions. <br>
